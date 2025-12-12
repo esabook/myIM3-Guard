@@ -1,0 +1,44 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        app:summary="Add more item by semicolon (;)"
+        app:title="Blacklist">
+
+        <EditTextPreference
+            app:key="@string/pkey_host_rc"
+            app:title="Built-in Host"
+            app:useSimpleSummaryProvider="true" />
+
+        <EditTextPreference
+            app:key="@string/pkey_host"
+            app:useSimpleSummaryProvider="true" />
+
+        <EditTextPreference
+            app:key="@string/pkey_source_rc"
+            app:shouldDisableView="true"
+            app:title="Build-in Source"
+            app:useSimpleSummaryProvider="true" />
+
+        <EditTextPreference
+            app:key="@string/pkey_source"
+            app:useSimpleSummaryProvider="true" />
+
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Text Size">
+
+        <SeekBarPreference
+            android:defaultValue="6"
+            android:max="20"
+            app:key="@string/pkey_textsize"
+            app:min="1"
+            app:seekBarIncrement="1"
+            app:showSeekBarValue="true"
+            app:useSimpleSummaryProvider="true" />
+
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
