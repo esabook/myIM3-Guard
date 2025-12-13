@@ -26,7 +26,7 @@ object SettingPref {
         )
     }
 
-    private fun Context.getKey(int: Int) = getString(int)
+    fun Context.getKey(int: Int) = getString(int)
 
     fun getDefaultTextSize(): Float {
         val set = pref.getInt(ctx.getKey(R.string.pkey_textsize), 6).toFloat()
@@ -45,11 +45,15 @@ object SettingPref {
         return set2.plus(";").plus(set1)
     }
 
-    fun setBlockedHostFRC(h: String){
+    fun getDefaultBrowserApp(): String? {
+        return pref.getString(ctx.getKey(R.string.pkey_default_app), "")
+    }
+
+    fun setBlockedHostFRC(h: String) {
         pref.edit { putString(ctx.getKey(R.string.pkey_host_rc), h) }
     }
 
-    fun setBlockedSourceFRC(s: String){
+    fun setBlockedSourceFRC(s: String) {
         pref.edit { putString(ctx.getKey(R.string.pkey_source_rc), s) }
     }
 

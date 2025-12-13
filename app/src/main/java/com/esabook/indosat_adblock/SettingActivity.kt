@@ -1,18 +1,19 @@
 package com.esabook.indosat_adblock
 
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.lifecycle.lifecycleScope
+import androidx.preference.DropDownPreference
 import androidx.preference.PreferenceFragmentCompat
 import com.esabook.indosat_adblock.databinding.SettingsActivityBinding
-import com.google.firebase.remoteconfig.FirebaseRemoteConfig
-import kotlinx.coroutines.launch
 
-class SettingsActivity : AppCompatActivity() {
+class SettingActivity : AppCompatActivity() {
 
     private val binding by lazy {
         SettingsActivityBinding.inflate(layoutInflater)
@@ -43,31 +44,32 @@ class SettingsActivity : AppCompatActivity() {
             finish()
         }
 
-        lifecycleScope.launch {
-            fetchConfig()
-        }
+        SettingSync.syncRemoteConfig(this)
+
     }
 
-    private fun fetchConfig() {
-        val frc = FirebaseRemoteConfig.getInstance()
-        frc.fetchAndActivate().addOnCompleteListener(this) { task ->
-            if (task.isSuccessful) {
-                val host = frc.getString("host_frc")
-                val source = frc.getString("source_frc")
-
-                SettingPref.setBlockedHostFRC(host)
-                SettingPref.setBlockedSourceFRC(source)
-
-                Log.i("iii", host + "ooo" + source)
-            } else {
-                task.exception?.printStackTrace()
-            }
-        }
-    }
 
     class SettingsFragment : PreferenceFragmentCompat() {
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             setPreferencesFromResource(R.xml.root_preferences, rootKey)
+
+            val defaultAppPref = findPreference<DropDownPreference>(getString(R.string.pkey_default_app))
+
+            val customEntries: Array<CharSequence> = listOf("Not Set").plus( getSupportedBrowserApp()).toTypedArray()
+            val customValues: Array<CharSequence> = customEntries
+
+            defaultAppPref?.entries = customEntries
+            defaultAppPref?.entryValues = customValues
+        }
+
+
+        private fun getSupportedBrowserApp(): List<CharSequence> {
+            val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://indosatooredoo.com"))
+            val infos = requireContext().packageManager
+                .queryIntentActivities(i, PackageManager.MATCH_ALL)
+                .filterNot { it.activityInfo.packageName == activity?.packageName }
+
+            return infos.map { it.activityInfo.packageName }
         }
     }
 }

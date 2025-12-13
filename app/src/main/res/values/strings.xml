@@ -16,4 +16,5 @@
     <string name="pkey_source_rc">source_rc</string>
     <string name="pkey_source">source</string>
     <string name="pkey_textsize">textSize</string>
+    <string name="pkey_default_app">default_app</string>
 </resources>

@@ -41,4 +41,14 @@
 
     </PreferenceCategory>
 
+    <PreferenceCategory app:title="Default App">
+
+        <DropDownPreference
+            app:key="@string/pkey_default_app"
+            app:defaultValue=""
+            app:useSimpleSummaryProvider="true" />
+
+
+    </PreferenceCategory>
+
 </PreferenceScreen>
