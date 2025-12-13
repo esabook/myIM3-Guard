@@ -1,5 +1,10 @@
 Download myIM3 Guard: [Latest Release](../../releases/)
 
+1. download latest apk
+2. open app
+3. activate/deactivate button
+
+
 <p align="top">
   <img src="doc/4.jpg" width="200" alt="4">
   <img src="doc/1.jpg" width="200" alt="1">
