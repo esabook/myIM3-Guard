@@ -105,6 +105,7 @@ class InterceptorActivity : AppCompatActivity() {
 
         if (pm.isEmpty()){
             startActivity(Intent.createChooser(ti, null))
+            finish()
 
         } else {
             val targetDefaultApp = SettingPref.getDefaultBrowserApp()
@@ -115,6 +116,7 @@ class InterceptorActivity : AppCompatActivity() {
                     it.setPackage(targetActivityInfo.activityInfo.packageName)
                     startActivity(it)
                 }
+                finish()
             } else {
                 LaunchChooserBottomsheet()
                     .setData(ti, pm)

@@ -58,6 +58,12 @@ class LaunchChooserBottomsheet : BottomSheetDialogFragment(R.layout.launch_choos
 
     }
 
+    override fun dismiss() {
+        super.dismiss()
+
+        activity?.finish()
+    }
+
     class Adapter(val intent: Intent) : ListAdapter<ResolveInfo, VH>(DIFF) {
         override fun onCreateViewHolder(
             parent: ViewGroup,
