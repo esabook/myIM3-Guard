@@ -30,8 +30,9 @@ class MainActivity : AppCompatActivity() {
     private val logAdapter by lazy { LogAdapter() }
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
-    private val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
-        // nothing
+    private val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ r ->
+        Log.i("iii", r.toString())
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -70,7 +71,7 @@ class MainActivity : AppCompatActivity() {
             val i = (getSystemService(ROLE_SERVICE) as? RoleManager)
                 ?.createRequestRoleIntent(RoleManager.ROLE_BROWSER)
 
-            if (i != null) {
+            if (i != null && !isMeDefaultApp()) {
                 resultLauncher.launch(i)
                 return
             }

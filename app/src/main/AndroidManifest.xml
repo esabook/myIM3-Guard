@@ -35,20 +35,7 @@
             android:name=".InterceptorActivity"
             android:exported="true"
             android:theme="@style/Theme.TransparentActivity">
-            <intent-filter android:label="Browsable">
-                <action android:name="android.intent.action.VIEW" />
-                <action android:name="android.intent.action.EDIT" />
-                <action android:name="android.intent.action.PICK" />
-                <action android:name="android.intent.action.GET_CONTENT" />
-                <action android:name="android.intent.action.INSERT" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:mimeType="*/*" />
-            </intent-filter>
-
-            <intent-filter android:label="View Http/s">
+            <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
@@ -56,44 +43,12 @@
 
                 <data android:scheme="http" />
                 <data android:scheme="https" />
-
             </intent-filter>
-            <intent-filter android:label="Pick">
-                <action android:name="android.intent.action.PICK" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-            <intent-filter android:label="Send">
-                <action android:name="android.intent.action.SEND" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:mimeType="*/*" />
-            </intent-filter>
-            <intent-filter android:label="Send to">
-                <action android:name="android.intent.action.SENDTO" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <data android:mimeType="*/*" />
-            </intent-filter>
-            <intent-filter android:label="Search">
+            <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
-            <intent-filter android:label="Web Search">
+            <intent-filter>
                 <action android:name="android.intent.action.WEB_SEARCH" />
-            </intent-filter>
-            <intent-filter android:label="View Zxing">
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="scan"
-                    android:path="/"
-                    android:scheme="zxing" />
             </intent-filter>
         </activity>
     </application>
