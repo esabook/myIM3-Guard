@@ -31,6 +31,11 @@ class LaunchChooserBottomsheet : BottomSheetDialogFragment(R.layout.launch_choos
         intent = i
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setStyle(STYLE_NO_FRAME, 0)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -56,6 +61,11 @@ class LaunchChooserBottomsheet : BottomSheetDialogFragment(R.layout.launch_choos
             }
         }
 
+    }
+
+    override fun onStop() {
+        super.onStop()
+        activity?.finish()
     }
 
     override fun dismiss() {
